@@ -7,6 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "lint": "eslint . --ext .js,.astro,.mdx",
     "prepare": "husky",
     "format": "prettier --write .",
     "test": "echo \"No tests configured\" && exit 0"
