@@ -24,8 +24,10 @@ export default defineConfig([
     languageOptions: {
       parser: parserAstro,
       parserOptions: {
-        parser: "@typescript-eslint/parser", // ok even for plain JS
+        parser: "@typescript-eslint/parser", // fallback for <script> blocks
         extraFileExtensions: [".astro"],
+        ecmaVersion: 2021,
+        sourceType: "module",
       },
     },
     plugins: {
@@ -34,7 +36,8 @@ export default defineConfig([
     rules: {
       ...pluginAstro.configs.recommended.rules,
     },
-  },
+  }
+
 
   // Optional: React (you’re not using it, but this avoids the warnings)
   pluginReact.configs.flat.recommended,
