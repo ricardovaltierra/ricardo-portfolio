@@ -6,5 +6,3 @@ export default {
     "@commitlint/config-conventional", // scoped packages are not prefixed
   ],
 };
-
-  
