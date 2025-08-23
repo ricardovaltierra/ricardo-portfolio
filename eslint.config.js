@@ -6,18 +6,21 @@ import parserAstro from "astro-eslint-parser";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
-  // Base JS config
+  // Base JS + TS
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
-    ...js.configs.recommended,
     languageOptions: {
       globals: globals.browser,
       ecmaVersion: 2021,
       sourceType: "module",
     },
-    ...js.configs.recommended,
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommended, // safe here, because it's an array
+    ],
   },
-  ...tseslint.configs.recommended,
+
+  // Astro files
   {
     files: ["**/*.astro"],
     languageOptions: {
@@ -32,9 +35,9 @@ export default defineConfig([
     plugins: {
       astro: pluginAstro,
     },
-    rules: {
-      ...pluginAstro.configs.recommended.rules,
-    },
-  }
+    rules: Object.assign(
+      {},
+      pluginAstro.configs.recommended.rules || {}, // ✅ merge instead of spread
+    ),
+  },
 ]);
-
