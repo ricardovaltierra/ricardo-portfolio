@@ -28,7 +28,7 @@ const experience = defineCollection({
     }))
  });
 
- const writing = definecollection({
+ const writing = defineCollection({
     type: "content",
     schema: z.object({
         title: z.string(),
